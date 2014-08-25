@@ -2,41 +2,38 @@ package com.misabiko.Ekorya.Resources.Sprites;
 
 import java.awt.image.BufferedImage;
 
-public class SpriteSheet extends Sprite{
-	
+import com.misabiko.Ekorya.Resources.Resources;
+
+public class SpriteSheet extends Sprite {
+
 	public BufferedImage[] sprites;
-	
+	private readFile spriteSheet;
+
 	public SpriteSheet(String sPath, String fExtension) {
 		super(sPath);
-		
-		readFile spriteSheet = new readFile(resPath+sPath,fExtension);
-		
+
+		spriteSheet = new readFile(Resources.resPath + sPath, fExtension);
+
 		sprites = new BufferedImage[spriteSheet.data.size()];
-		
-		for (int i = 0;i<spriteSheet.data.size();i++) {
-			sprites[i] = img.getSubimage(
-					spriteSheet.data.get(i)[0],
-					spriteSheet.data.get(i)[1],
-					spriteSheet.data.get(i)[2],
-					spriteSheet.data.get(i)[3]
-			);
+
+		for (int i = 0; i < spriteSheet.data.size(); i++) {
+			sprites[i] = img.getSubimage(spriteSheet.data.get(i)[0], spriteSheet.data.get(i)[1], spriteSheet.data.get(i)[2], spriteSheet.data.get(i)[3]);
+		}
+	}
+
+	public SpriteSheet(String sPath, String fPath, String fExtension) {
+		super(sPath);
+
+		spriteSheet = new readFile(Resources.resPath + fPath, fExtension);
+
+		sprites = new BufferedImage[spriteSheet.data.size()];
+
+		for (int i = 0; i < spriteSheet.data.size(); i++) {
+			sprites[i] = img.getSubimage(spriteSheet.data.get(i)[0], spriteSheet.data.get(i)[1], spriteSheet.data.get(i)[2], spriteSheet.data.get(i)[3]);
 		}
 	}
 	
-	public SpriteSheet(String sPath, String fPath, String fExtension) {
-		super(sPath);
-		
-		readFile spriteSheet = new readFile(resPath+fPath,fExtension);
-		
-		sprites = new BufferedImage[spriteSheet.data.size()];
-		
-		for (int i = 0;i<spriteSheet.data.size();i++) {
-			sprites[i] = img.getSubimage(
-					spriteSheet.data.get(i)[0],
-					spriteSheet.data.get(i)[1],
-					spriteSheet.data.get(i)[2],
-					spriteSheet.data.get(i)[3]
-			);
-		}
+	public BufferedImage getSprite(String name) {
+		return sprites[spriteSheet.names.indexOf(name)];
 	}
 }

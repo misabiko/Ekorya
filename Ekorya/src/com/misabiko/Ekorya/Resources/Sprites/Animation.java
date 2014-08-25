@@ -1,7 +1,7 @@
 package com.misabiko.Ekorya.Resources.Sprites;
 
 import java.awt.Graphics;
-import java.awt.Image;
+import java.awt.image.BufferedImage;
 
 public class Animation {
 
@@ -48,7 +48,7 @@ public class Animation {
 				} else {
 					currSprite++;
 				}
-			}else {
+			} else {
 				if (currSprite == firstSprite) {
 					reverse = !reverse;
 					currSprite++;
@@ -61,8 +61,9 @@ public class Animation {
 		}
 	}
 
-	public Image getImg() {
+	public BufferedImage getImg() {
 		if (skipIndex == frameSkip) {
+			skipIndex = 0;
 			if (currSprite == lastSprite) {
 				currSprite = firstSprite;
 			} else {

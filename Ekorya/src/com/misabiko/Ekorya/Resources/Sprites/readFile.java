@@ -16,7 +16,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class readFile {
-	
+	public ArrayList<String> names = new ArrayList<String>();
 	public ArrayList<int[]> data = new ArrayList<int[]>();
 	
 	public readFile(String path,String extension) {
@@ -66,7 +66,7 @@ public class readFile {
 			doc.getDocumentElement().normalize();
 		 
 			NodeList nList = doc.getElementsByTagName("SubTexture");
-		 
+			
 			for (int temp = 0; temp < nList.getLength(); temp++) {
 		 
 				Node nNode = nList.item(temp);
@@ -83,6 +83,7 @@ public class readFile {
 					smallArray[3] = Integer.parseInt(eElement.getAttribute("height"));
 					
 					data.add(smallArray);
+					names.add(eElement.getAttribute("name"));
 		 
 				}
 			}
